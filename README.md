@@ -1,6 +1,6 @@
-# SurveyApe
+# SpringSurveyApplication
 
-SurveyApe is a web based survey app that provides survey composition, distribution,
+SpringSurveyApplication is a web based survey app that provides survey composition, distribution,
 and reporting. The app is hosted on Amazon AWS and accessible from any web
 browser. The application is written in Java and built from Spring framework.
 
