@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Compose Survey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="row">
+    <div class="col-md-2 col-md-offset-4 pt-1e">
+        <h4 class="text-blue">Compose Survey</h4>
+        <div class="survey_form blue-box">
+            <div th:if="${surveyMessage}" class="alert alert-success"
+                 role="alert" th:text=${surveyMessage}></div>
+            <div>
+                <p>Current questions:</p>
+                <tr th:each="question : ${survey.questions}">
+                    <td th:text="${question.question}"></td>
+                    <td th:value="${question.question}"></td>
+                    <br/>
+                </tr>
+            </div>
+            <form action="#" th:action="@{/compose_survey}" th:object="${survey}" method="post">
+                <div class="form-group">
+                    <label>Survey Name</label>
+                    <input type="text" th:field="*{name}" required/>
+                </div>
+                <!--<p>Survey Type: <input type="text" th:field="*{type}" required/></p>-->
+                <div class="form-group">
+                    <label>Survey Type</label>
+                    <select th:field="*{type}">
+                        <option th:each="survey_type : ${survey_types}"
+                                th:value="${survey_type}"
+                                th:text="${survey_type}"></option>
+                    </select>
+                </div>
+                <p><input class="btn btn-default" type="submit" name="action", value="submit" /></p>
+            </form>
+        </div>
+
+        <div class="blue-box">
+            <!--<div th:if="${add_question}" class="alert alert-success"-->
+            <!--role="alert" th:text=${add_question}></div>-->
+            <form action="#" th:action="@{/add_question}" method="get">
+                <p class="text-green">Add a new question</p>
+                <div class="form-group">
+                <label>Question Type</label>
+                    <select name="question_type">
+                        <option th:each="question_type : ${question_types}"
+                                th:value="${question_type}"
+                                th:text="${question_type}"></option>
+                    </select>
+                </div>
+                <p><input class="btn btn-default" type="submit", value="Add Question" /></p>
+            </form>
+            <!--<div class="survey_question">-->
+            <!--<form action="#" th:action="@{/add_question}" th:object="${survey_question_factory}" method="post">-->
+            <!--<p>Survey Type: <select th:field="*{type}">-->
+            <!--<option th:each="question_type : ${question_types}"-->
+            <!--th:value="${question_type}"-->
+            <!--th:text="${question_type}"></option>-->
+            <!--</select></p>-->
+            <!--<p><input type="submit" value="Submit" /></p>-->
+            <!--</form>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<!-- jQuery-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

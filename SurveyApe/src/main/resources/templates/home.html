@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+        <head>
+        <!-- Bootstrap core CSS -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous" />
+        <link th:href="@{css/theme.css}" rel="stylesheet" />
+        <title>Spring Security Example</title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5 pt-1e">
+                <h1 class="text-blue">Welcome!</h1>
+
+                <!--<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>-->
+
+                <p><a  class="btn btn-default" th:href="@{/compose_survey}">Create a new survey</a></p>
+                <p><a  class="btn btn-default" th:href="@{/report}">View surveys</a></p>
+                <p><a  class="btn btn-default" th:href="@{/take_survey}">Take surveys</a></p>
+                <p><a  class="btn btn-default" th:href="@{/edit_survey}">Edit surveys</a></p>
+                </br>
+                <p><a  class="btn btn-default" th:href="@{/register}">Register</a></p>
+                <p><a  class="btn btn-default" th:href="@{/activate}">Activate Account</a></p>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

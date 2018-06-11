@@ -1,0 +1,23 @@
+.pt-1e{
+    padding-top: 1em;
+}
+.pl-0{
+    padding-left: 0;
+}
+.text-blue{
+    color: #007bff;
+}
+.text-green{
+    color:#8bc34a;
+}
+.bold{
+    font-weight: bold;
+}
+.blue-box{
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    padding: 1em;
+    min-width: 300px;
+    margin-bottom: 40px;
+}
+

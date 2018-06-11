@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+<div class="col-md-2 col-md-offset-5 pt-1e">
+<h4 class="text-blue">Available Surveys</h4>
+<td>
+<tr th:each="survey : ${available_surveys}">
+    <a th:text="${survey.key}" th:href="${survey.value}"></a>
+    </br>
+</tr>
+</td>
+</div>
+<div class="col-md-2 col-md-offset-5 pt-1e">
+    <h4 class="text-blue">Completed Surveys</h4>
+    <p><a  class="btn btn-default" th:href="@{/view_completed}">View completed surveys</a></p>
+    <span th:each="survey : ${completed_surveys}">
+        <p th:text="'Survey Name: ' + ${survey.name}"></p>
+        </br>
+    </span>
+</div>
+</body>
+</html>

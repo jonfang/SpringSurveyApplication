@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-2 col-md-offset-4 pt-1e">
+        <div class="blue-box">
+            <tbody>
+                <div th:if="${surveyMessage}" class="alert alert-success"
+                     role="alert" th:text=${surveyMessage}>
+                </div>
+                <th:block th:if="${type}=='yesno'">
+                    <p class="text-green bold">Question: <td th:text="${yesno.question}"></td></p>
+                    <form action="#" th:action="@{/submit_survey}" th:object="${yesno}" method="post">
+                        <p style="display: none;"><input type="text" th:value="${yesno.question}" th:field="*{question}"/></p>
+                        <p>YesNo Type: <select th:field="*{yes}">
+                            <option th:value="true">true</option>
+                            <option th:value="false">false</option>
+                        </select></p>
+                        <p><input class="btn btn-default" type="submit" name="action", value="submit yesno" /></p>
+                    </form>
+                    <hr/>
+                </th:block>
+
+                <th:block th:if="${type}=='short'">
+                    <p class="text-green bold">Question: <td th:text="${shortanswer.question}"></td></p>
+                    <form action="#" th:action="@{/submit_survey}" th:object="${shortanswer}" method="post">
+                        <p style="display: none;"><input type="text" th:value="${shortanswer.question}" th:field="*{question}"/></p>
+                        <p>Short Answer: <input type="text" th:field="*{shortAnswer}" required/></p>
+                        <p><input class="btn btn-default" type="submit" name="action", value="submit short" /></p>
+                    </form>
+                    <hr/>
+                </th:block>
+
+                <th:block th:if="${type}=='rating'">
+                    <p class="text-green bold">Question: <td th:text="${rating.question}"></td></p>
+                    <form action="#" th:action="@{/submit_survey}" th:object="${rating}" method="post">
+                        <p style="display: none;"><input type="text" th:value="${rating.question}" th:field="*{question}"/></p>
+                        <p>Rating Type: <select th:field="*{rating}">
+                            <option th:value="1">1</option>
+                            <option th:value="2">2</option>
+                            <option th:value="3">3</option>
+                            <option th:value="4">4</option>
+                            <option th:value="5">5</option>
+                        </select></p>
+                        <p><input class="btn btn-default" type="submit" name="action", value="submit rating" /></p>
+                    </form>
+                    <hr/>
+                </th:block>
+
+                <th:block th:if="${type}=='multiplechoice'">
+                    <p class="text-green bold">Question: <td th:text="${multiplechoice.question}"></td></p>
+                    <form action="#" th:action="@{/submit_survey}" th:object="${multiplechoice}" method="post">
+                        <p style="display: none;"><input type="text" th:value="${multiplechoice.question}" th:field="*{question}"/></p>
+                        <p>Choice: <select th:field="*{chosen}">
+                            <option th:each="choice : ${multiplechoice.choices}"
+                                    th:value="${choice.choice}"
+                                    th:text="${choice.choice}"></option>
+                        </select></p>
+                        <p><input class="btn btn-default" type="submit" name="action", value="submit multiplechoice" /></p>
+                    </form>
+                    <hr/>
+                </th:block>
+
+                <th:block th:if="${type}=='datetime'">
+                    <p class="text-green bold">Question: <td th:text="${datetime.question}"></td></p>
+                    <form action="#" th:action="@{/submit_survey}" th:object="${datetime}" method="post">
+                        <p style="display: none;"><input type="text" th:value="${datetime.question}" th:field="*{question}"/></p>
+                        <p>Month: <select th:field="*{month}">
+                            <option th:each="m : ${datetime.months}"
+                                    th:value="${m}"
+                                    th:text="${m}"></option>
+                        </select></p>
+                        <p>Day: <select th:field="*{day}">
+                            <option th:each="d : ${datetime.days}"
+                                    th:value="${d}"
+                                    th:text="${d}"></option>
+                        </select></p>
+                        <p>Year: <select th:field="*{year}">
+                            <option th:each="y : ${datetime.years}"
+                                    th:value="${y}"
+                                    th:text="${y}"></option>
+                        </select></p>
+                        </br>
+                        <p><input class="btn btn-default" type="submit" name="action", value="submit datetime" /></p>
+                    </form>
+                    <hr/>
+                </th:block>
+
+            </tbody>
+        </div>
+    </div>
+</div>
+</body>
+</html>

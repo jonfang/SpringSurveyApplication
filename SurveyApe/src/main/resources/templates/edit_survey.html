@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+<div class="col-md-2 col-md-offset-5 pt-1e">
+    <h4 class="text-blue">Edit Survey</h4>
+    <form action="#" th:action="@{/edit_survey}" th:object="${survey}" method="post">
+        <div class="form-group">
+            <label>Survey</label>
+            <select th:field="*{name}">
+                <option th:each="survey : ${surveyList}"
+                        th:value="${survey.name}"
+                        th:text="${survey.name}"></option>
+            </select>
+        </div>
+
+        <p><input class="btn btn-default" type="submit" name="action", value="edit survey" /></p>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Produce Survey</title>
+</head>
+<body>
+<th:block th:if="${type}=='Open'">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4 pt-1e">
+            <h4 class="text-blue">Current questions:</h4>
+            <div class="blue-box">
+                <tr th:each="result : ${survey.questionResults}">
+                    <td th:text="${result.question}"></td>
+                    <br/>
+                </tr>
+            </div>
+            <div th:if="${produceMessage}" th:text=${produceMessage}> </div>
+        </div>
+    </div>
+</th:block>
+<th:block th:if="${type}=='General'">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4 pt-1e">
+            <h4 class="text-blue">Current questions:</h4>
+            <div class="blue-box">
+                <tr th:each="result : ${survey.questionResults}">
+                    <td th:text="${result.question}"></td>
+                    <br/>
+                </tr>
+            </div>
+            <div th:if="${produceMessage}" th:text=${produceMessage}> </div>
+        </div>
+    </div>
+</th:block>
+<th:block th:if="${type}=='Closed'">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4 pt-1e">
+            <h4 class="text-blue">Please provide the emails to send to</h4>
+            <form action="#" th:action="@{/closed_survey}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label>Emails</label>
+                    <p>If more than 1 user, please separate emails by comma</p>
+                    <p style="display: none;"><input type="text" th:value="${produceMessage}" th:field="*{confirmationToken}"/></p>
+                    <input type="text" th:field="*{email}" required/>
+                </div>
+                <p><input class="btn btn-default" type="submit" name="action", value="submit" /></p>
+            </form>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

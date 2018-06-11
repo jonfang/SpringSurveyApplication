@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-2 col-md-offset-5 pt-1e">
+    <h4 class="text-blue">View Survey Results</h4>
+    <ul class="pl-0">
+        <li th:each="survey : ${surveys}">
+            <p><a th:href="@{/report_survey(token=${survey.surveyToken})}"  th:text="${survey.name}" ></a></p>
+        </li>
+    </ul>
+    </div>
+</div>
+</body>
+</html>

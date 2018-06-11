@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Add Question</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-2 col-md-offset-4 pt-1e">
+    <h4 class="text-blue">Add Question</h4>
+
+    <div class="blue-box" th:if="${shortanswer}">
+        <p class="text-green bold">Short Answer</p>
+        <form action="#" th:action="@{/add_question}" th:object="${shortanswer}" method="post">
+            <p>Question: <input type="text" th:field="*{question}" required/></p>
+            <p><input class="btn btn-default" type="submit" name="action" value="add short answer" /></p>
+        </form>
+    </div>
+
+    <div class="blue-box" th:if="${rating}">
+        <p class="text-green bold">Rating</p>
+        <form action="#" th:action="@{/add_question}" th:object="${rating}" method="post">
+            <p>Question: <input type="text" th:field="*{question}" required/></p>
+            <p><input class="btn btn-default" type="submit" name="action" value="add rating" /></p>
+        </form>
+    </div>
+
+    <div class="blue-box" th:if="${yesno}">
+        <p class="text-green bold">Yes No</p>
+        <form action="#" th:action="@{/add_question}" th:object="${yesno}" method="post">
+            <p>Question: <input type="text" th:field="*{question}" required/></p>
+            <p><input class="btn btn-default" type="submit" name="action" value="add yesno" /></p>
+        </form>
+    </div>
+
+        <div class="blue-box" th:if="${datetime}">
+            <p class="text-green bold">Date Time</p>
+            <form action="#" th:action="@{/add_question}" th:object="${datetime}" method="post">
+                <p>Question: <input type="text" th:field="*{question}" required/></p>
+                <p><input class="btn btn-default" type="submit" name="action" value="add datetime" /></p>
+            </form>
+        </div>
+
+        <div class="blue-box" th:if="${multiplechoice}">
+            <p class="text-green bold">Multiple Choice</p>
+            <div>
+                <p >Current Choices:</p>
+                <tr th:each="choice : ${tmpMC.choices}">
+                    <td th:text="${choice.choice}"></td>
+                    <td th:value="${choice.choice}"></td>
+                    <br/>
+                </tr>
+            </div>
+            <form action="#" th:action="@{/add_question}" th:object="${multiplechoice}" method="post">
+                <p>Question: <input type="text" th:field="*{question}" required/></p>
+                <label>Choice Type</label>
+                <select th:field="*{choiceType}">
+                    <option th:each="choice_type : ${multiplechoice.choiceTypes}"
+                            th:value="${choice_type}"
+                            th:text="${choice_type}"></option>
+                </select>
+                </br>
+                <label>Answer Type</label>
+                <select th:field="*{answerType}">
+                    <option th:each="answer_type : ${multiplechoice.answerTypes}"
+                            th:value="${answer_type}"
+                            th:text="${answer_type}"></option>
+                </select>
+                </br>
+                <label>Visual Style</label>
+                <select th:field="*{visualStyle}">
+                    <option th:each="visual_style : ${multiplechoice.visualStyles}"
+                            th:value="${visual_style}"
+                            th:text="${visual_style}"></option>
+                </select>
+                </br>
+                <p><input class="btn btn-default" type="submit" name="action" value="add multiplechoice" /></p>
+            </form>
+
+            <div>
+                <p class="text-green bold">Add Choice</p>
+                <form action="#" th:action="@{/add_choice}" th:object="${choice}" method="post">
+                    <p>Question: <input type="text" th:field="*{choice}" required/></p>
+                    <p><input class="btn btn-default" type="submit" name="action" value="add choice" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

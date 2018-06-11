@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
+    <link th:href="@{css/theme.css}" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+<div class="col-md-2 col-md-offset-5 pt-1e">
+<h4 class="text-blue">Activate Account</h4>
+<div th:if="${confirmationMessage}" class="alert alert-success"
+     role="alert" th:text=${confirmationMessage}></div>
+<form autocomplete="off" action="#" th:action="@{/activate}"
+      th:object="${user}" method="post">
+    <input type="text" th:field="*{confirmationToken}"
+           class="form-control" required />
+
+    <button type="submit"
+            class="btn btn-primary">Activate</button>
+</form>
+</div>
+</body>
+</html>
